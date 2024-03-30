@@ -98,11 +98,7 @@ if __name__ == '__main__':
     colored_ascii_art = termcolor.colored(ascii_banner, color='blue')
     print(colored_ascii_art)
     ships = 1000
-    # URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeA1E-IAP1tSpJejX-d8RYPVhk3vOwDDw1lAJ57E4nZZUgtiQ/formResponse'
-    # URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdK9UPOgJBgaGMq9gYDsDSLFJ2tx5BX9OnZQ_9UBP3ryJ0ykw/formResponse'
-    # URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfk77wxCOZsfRBZti8LN9RTLfp-NC2MSk51FqvtSOQuzVb3gw/formResponse'
-    # URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc9OkDo_3GQGWOHHJmM0eihHdj5NvYHTnMS6eJklNDWdE6Phw/formResponse'
-    URL = 'https://forms.gle/Gs3YdgMtQFWXXmMB8'
+    URL = "{POST URL HERE}"
     if "formResponse" not in URL:
         r = requests.get(URL)  # first we try http
         URL = r.url
