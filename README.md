@@ -20,7 +20,7 @@ entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding sc
 
 ## Installation
 
-Install the dependencies and devDependencies and start the server.
+Install the required packages
 
 ```sh
 cd entryBoom
