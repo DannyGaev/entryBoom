@@ -53,7 +53,7 @@ The Latest 2024 Phishing Statistics [AAG IT](https://aag-it.com/the-latest-phish
 > 4. Microsoft (6%)
 > 5. FedEx (6%)
 
-## Tech
+## Packages & Libraries
 
 entry.B00M uses a number of packages to work properly:
 
