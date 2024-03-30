@@ -28,7 +28,6 @@ successful = 0
 denied = 0
 verbose = True
 
-
 def newUserAgent():
     software_names = [SoftwareName.CHROME.value]
     operating_systems = [OperatingSystem.WINDOWS.value,
@@ -81,10 +80,12 @@ def thayntics(URL, entryIds, categories, _):
                 status_code = "\033[31mService Unavailable\033[39m"
             case 504:
                 status_code = "\033[31mGateway Timeout\033[39m"
+
         if verbose:
             print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
                 number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
         successful += 1
+        
     except ConnectionError as e:
         if verbose:
             status_code = "\033[31mRemote End Closed Connection Without Response\033[39m"
@@ -100,7 +101,7 @@ if __name__ == '__main__':
     ships = 1000
     URL = "{POST URL HERE}"
     if "formResponse" not in URL:
-        r = requests.get(URL)  # first we try http
+        r = requests.get(URL)  
         URL = r.url
         URL = URL[0:URL.find("viewform")]+"formResponse"
     print('Webscraping the Google Form at: "{url}"'.format(url=URL))
@@ -146,11 +147,6 @@ if __name__ == '__main__':
         ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)]
     ]
 
-    # Table headers
     headers = ["Statistic", "Count"]
-
-    # Print the table using tabulate
     table = tabulate(data, headers=headers, tablefmt="grid")
     print("\n"+table)
-    # print("\nSuccessful requests: \033[32m{success}\033[39m\nRequests denied: \033[31m{den}\033[39m".format(
-    #     success=successful, den=denied))
