@@ -23,12 +23,12 @@ entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding sc
 The Latest 2024 Phishing Statistics [Markdown site](https://aag-it.com/the-latest-phishing-statistics/)
 > Phishing is the most common form of cyber crime, 
 > with an estimated 3.4 billion spam emails sent every day...
-> The top 5 most imitated brands in Q1 2022 were:
-LinkedIn (52%)
-DHL (14%)
-Google (7%)
-Microsoft (6%)
-FedEx (6%)
+> the top 5 most imitated brands in Q1 2022 were:
+> 1. LinkedIn (52%)
+> 2. DHL (14%)
+> 3. Google (7%)
+> 4. Microsoft (6%)
+> 5. FedEx (6%)
 
 ## Tech
 
