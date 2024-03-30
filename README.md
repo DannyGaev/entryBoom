@@ -13,7 +13,7 @@
 ## _Muddying The Phisher's Net_
 #
 entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding scammers' phishing attempts through POST requests en-masse; the primary goal of the project is to:
-* Populate the scammer's Google Form with large amounts of false data so real responses from victims are not apparent 
+* Populate the scammer's Google Forms with large amounts of false data so real responses from victims are not apparent 
 * Inundate scammers' Google Forms with enough data that they are unwilling to trudge through it to look for genuine responses
 #
 ## Features
