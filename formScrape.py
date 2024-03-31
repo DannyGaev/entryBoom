@@ -35,7 +35,10 @@ def findFields(soup):
 
         entryNum = splicedEntry
         categoryBlock = tagBlockContent[0][0:indexOfEntry]
-        category = re.findall(pattern3, categoryBlock, re.DOTALL)[0]
+        try:
+            category = re.findall(pattern3, categoryBlock, re.DOTALL)[0]
+        except:
+            category = ""
 
         entryIds.append(entryNum)
         categories.append(category)
