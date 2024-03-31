@@ -37,11 +37,10 @@ to activate verbose mode and see every request being sent
 
 ## Features
 - Use a '-v' when running the program to turn on verbose mode
-    - View an example of the data being sent
-- The POST requests being sent are outputted to the terminal with additional data:
-    1. The generated user agent being used for the request
-    2. The proxy IP Address being used for the requests
-    3.  The status code which the request returned
+    - View the POST requests being sent; data displayed covers:
+        1. The generated user agent being used for the request
+        2. The proxy IP Address being used for the requests
+        3. The status code which the request returned
 
 ## Mechanics
 - Google Forms utilize an "entry.id=########" to specify the answers that correlate to the corresponding questions; entry.B00M uses this concept to pass randomly generated values to the scammer's form.
