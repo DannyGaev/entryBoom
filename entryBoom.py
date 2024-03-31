@@ -51,7 +51,7 @@ def get_tor_session():
     return session
 
 
-def thayntics(URL, entryIds, categories, args, _):
+def booming(URL, entryIds, categories, args, _):
     global successful, denied, verbose
     try:
         user_agent = newUserAgent()
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     threads = []
     for _ in range(ships):
         posting = threading.Thread(
-            target=thayntics, args=(URL, entryIds, categories, args, _))
+            target=booming, args=(URL, entryIds, categories, args, _))
         threads.append(posting)
         posting.start()
         time.sleep(0.1)
