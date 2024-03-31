@@ -26,7 +26,6 @@ from boomGens import *
 
 successful = 0
 denied = 0
-verbose = True
 
 
 def newUserAgent():
