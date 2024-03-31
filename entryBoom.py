@@ -115,14 +115,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
     start = time.time()
     URL = args.url
-    ships = args.num
+    payloads = args.num
 
     if "formResponse" not in URL:
+        print("Reformatting the URL...")
         r = requests.get(URL)
         URL = r.url
         URL = URL[0:URL.find("viewform")]+"formResponse"
 
-    print('Webscraping the Google Form at: "{url}"'.format(url=URL))
+    print('\nWebscraping the Google Form at: "{url}"'.format(url=URL))
     entryIds, categories = findFields(getSoup(URL))
     key_replacements = {}
     examplePayload = genPayload(
@@ -144,9 +145,9 @@ if __name__ == '__main__':
     print("\033[33m{pj}\033[39m".format(pj=pretty_json))
 
     print("\nSending {num} payloads of randomly generated data to the form...".format(
-        num=ships))
+        num=payloads))
     threads = []
-    for _ in range(ships):
+    for _ in range(payloads):
         posting = threading.Thread(
             target=booming, args=(URL, entryIds, categories, args, _))
         threads.append(posting)
@@ -155,11 +156,11 @@ if __name__ == '__main__':
     for thread in threads:
         thread.join()
     end = time.time()
-    print("Time elapsed (seconds): {time:.2f}".format(time=end - start))
     data = [
         ["Successful requests",
             "\033[32m{success}\033[39m".format(success=successful)],
-        ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)]
+        ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)],
+        ["Time elapsed (seconds)", "\033[36m{time:.2f}\033[39m".format(time=end - start)]
     ]
     headers = ["Statistic", "Count"]
     table = tabulate(data, headers=headers, tablefmt="grid")
