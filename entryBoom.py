@@ -114,10 +114,10 @@ if __name__ == '__main__':
     parser.add_argument('-v', dest="verbose", default=False,
                         action='store_true', help='Enable verbose mode')
     args = parser.parse_args()
-
     start = time.time()
-    ships = 1000
     URL = args.url
+    ships = args.num
+
     if "formResponse" not in URL:
         r = requests.get(URL)
         URL = r.url
@@ -126,12 +126,10 @@ if __name__ == '__main__':
     print('Webscraping the Google Form at: "{url}"'.format(url=URL))
     entryIds, categories = findFields(getSoup(URL))
     key_replacements = {}
-
     examplePayload = genPayload(
         entryIds, categories,  get_tor_session(), newUserAgent())
     values = []
     cnt = 0
-
     for key, value in examplePayload.items():
         values.append(value)
 
@@ -158,14 +156,12 @@ if __name__ == '__main__':
     for thread in threads:
         thread.join()
     end = time.time()
-    print("Took {time} seconds".format(time=end - start))
-
+    print("Time elapsed (seconds): {time:.2f}".format(time=end - start))
     data = [
         ["Successful requests",
             "\033[32m{success}\033[39m".format(success=successful)],
         ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)]
     ]
-
     headers = ["Statistic", "Count"]
     table = tabulate(data, headers=headers, tablefmt="grid")
     print("\n"+table)
