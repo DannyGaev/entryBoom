@@ -10,7 +10,7 @@ def genNumber():
     return numbers[random.randint(0, len(numbers)-1)]
 
 
-def genInput(rangeOf):
+def genInput(rangeOf): 
     return ''.join(random.choice(string.ascii_uppercase + string.digits)
                    for _ in range(rangeOf))
 
@@ -172,7 +172,7 @@ def genPayload(entryIds, categories, session, user_agent):
         elif "gender" in c:
             el = "Female" if rand else "Male"
         elif "do you" in c or "are you" in c:
-            el = "YES" if rand else "NO"
+            el = "Yes" if rand else "No"
         elif "age" in c:
             el = "21"
         elif "occupation" in c or "job" in c or "position" in c:
@@ -187,5 +187,17 @@ def genPayload(entryIds, categories, session, user_agent):
                     found = True
                 except:
                     pass
+        elif c=="":
+            el = "Option 1"
+        elif "comments" in c:
+            rand2 = random.randint(1, 5)
+            if rand2==1:
+                el = "We have collected information about your computer and network -- it will be reported to the proper authorities. Good luck."
+            elif rand2==2:
+                el = "How do I use the service?"
+            elif rand2==3:
+                el = "I had a few questions abut the pay ! Contact me at my other email at  supposedChi1ck3n@proton.me, thank yuo!"
+            elif rand2==4:
+                el = "As a {job}, how would I go about quitting and transferring to you? thanks!".format(job=''.join(genJob()))
         payload["entry."+entryIds[x]] = el
     return payload
