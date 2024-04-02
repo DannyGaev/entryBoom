@@ -3,6 +3,9 @@ import time
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 import re
+import json
+from boomGens import *
+from entryBoom import get_tor_session, get_user_agent
 
 
 def getSoup(link):
@@ -43,4 +46,27 @@ def findFields(soup):
         entryIds.append(entryNum)
         categories.append(category)
 
+    return entryIds, categories
+
+def scrapeForm(URL):
+    print(f'\nWebscraping the Google Form at: "{URL}"')
+    entryIds, categories = findFields(getSoup(URL))
+    key_replacements = {}
+    examplePayload = genPayload(
+        entryIds, categories,  get_tor_session(), get_user_agent())
+    values = []
+    cnt = 0
+    for key, value in examplePayload.items():
+        values.append(value)
+
+    print("\nCategories found: ")
+    for category in categories:
+        c = category.replace("\\n", '')
+        key_replacements[c] = values[cnt]
+        print("\t∙ {cat}".format(cat=c))
+        cnt += 1
+
+    print("\n\033[36mExample of a payload being sent to the form\033[39m: ")
+    pretty_json = json.dumps(key_replacements, indent=4)
+    print(f"\033[33m{pretty_json}\033[39m")
     return entryIds, categories
