@@ -101,7 +101,6 @@ def booming(URL, entryIds, categories, args, _):
                 number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
         denied += 1
 
-
 if __name__ == '__main__':
     ascii_banner = pyfiglet.figlet_format("entry.B00M", font="big")
     colored_ascii_art = termcolor.colored(ascii_banner, color='blue')
@@ -122,6 +121,7 @@ if __name__ == '__main__':
         r = requests.get(URL)
         URL = r.url
         URL = URL[0:URL.find("viewform")]+"formResponse"
+        URL = URL.replace("[.]",".")
 
     print('\nWebscraping the Google Form at: "{url}"'.format(url=URL))
     entryIds, categories = findFields(getSoup(URL))
@@ -160,7 +160,8 @@ if __name__ == '__main__':
         ["Successful requests",
             "\033[32m{success}\033[39m".format(success=successful)],
         ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)],
-        ["Time elapsed (seconds)", "\033[36m{time:.2f}\033[39m".format(time=end - start)]
+        ["Time elapsed (seconds)",
+         "\033[36m{time:.2f}\033[39m".format(time=end - start)]
     ]
     headers = ["Statistic", "Count"]
     table = tabulate(data, headers=headers, tablefmt="grid")
