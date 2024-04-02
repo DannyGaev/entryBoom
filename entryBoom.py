@@ -28,7 +28,7 @@ successful = 0
 denied = 0
 
 
-def newUserAgent():
+def get_user_agent():
     software_names = [SoftwareName.CHROME.value]
     operating_systems = [OperatingSystem.WINDOWS.value,
                          OperatingSystem.LINUX.value]
@@ -49,11 +49,23 @@ def get_tor_session():
                        'https': 'socks5://127.0.0.1:9050'}
     return session
 
+def getTable(start,end):
+    data = [
+        ["Successful requests",
+            f"\033[32m{successful}\033[39m"],
+        ["Requests denied", f"\033[31m{denied}\033[39m"],
+        ["Time elapsed (seconds)",
+         f"\033[36m{end-start:.2f}\033[39m"]
+    ]
+    headers = ["Statistic", "Count"]
+    table = tabulate(data, headers=headers, tablefmt="grid")
+    print("\n"+table)
+
 
 def booming(URL, entryIds, categories, args, _):
     global successful, denied, verbose
     try:
-        user_agent = newUserAgent()
+        user_agent = get_user_agent()
         session = get_tor_session()
         r = session.get("http://httpbin.org/ip")
         data = json.loads(r.text)
@@ -123,29 +135,9 @@ if __name__ == '__main__':
         URL = URL[0:URL.find("viewform")]+"formResponse"
         URL = URL.replace("[.]",".")
 
-    print('\nWebscraping the Google Form at: "{url}"'.format(url=URL))
-    entryIds, categories = findFields(getSoup(URL))
-    key_replacements = {}
-    examplePayload = genPayload(
-        entryIds, categories,  get_tor_session(), newUserAgent())
-    values = []
-    cnt = 0
-    for key, value in examplePayload.items():
-        values.append(value)
-
-    print("\nCategories found: ")
-    for category in categories:
-        c = category.replace("\\n", '')
-        key_replacements[c] = values[cnt]
-        print("\t∙ {cat}".format(cat=c))
-        cnt += 1
-
-    print("\n\033[36mExample of a payload being sent to the form\033[39m: ")
-    pretty_json = json.dumps(key_replacements, indent=4)
-    print("\033[33m{pj}\033[39m".format(pj=pretty_json))
-
-    print("\nSending {num} payloads of randomly generated data to the form...".format(
-        num=payloads))
+    
+    entryIds, categories = scrapeForm(URL)
+    print(f"\nSending {payloads} payloads of randomly generated data to the form...")
     threads = []
     for _ in range(payloads):
         posting = threading.Thread(
@@ -156,13 +148,6 @@ if __name__ == '__main__':
     for thread in threads:
         thread.join()
     end = time.time()
-    data = [
-        ["Successful requests",
-            "\033[32m{success}\033[39m".format(success=successful)],
-        ["Requests denied", "\033[31m{den}\033[39m".format(den=denied)],
-        ["Time elapsed (seconds)",
-         "\033[36m{time:.2f}\033[39m".format(time=end - start)]
-    ]
-    headers = ["Statistic", "Count"]
-    table = tabulate(data, headers=headers, tablefmt="grid")
-    print("\n"+table)
+    getTable(start,end)
+
+    
