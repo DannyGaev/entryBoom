@@ -191,15 +191,16 @@ def genPayload(entryIds, categories, session, user_agent):
             el = "Option 1"
         elif "comments" in c:
             rand2 = random.randint(1, 5)
-            if rand2==1:
-                el = "We have collected information about your computer and network -- it will be reported to the proper authorities. Good luck."
-            elif rand2==2:
-                el = "How do I use the service?"
-            elif rand2==3:
-                el = "I had a few questions abut the pay ! Contact me at my other email at  supposedChi1ck3n@proton.me, thank yuo!"
-            elif rand2==4:
-                el = "As a {job}, how would I go about quitting and transferring to you? thanks!".format(job=''.join(genJob()))
-            elif rand2==5:
-                el = "."
+            match rand2:
+                case 1:
+                    el = "We have collected information about your computer and network -- it will be reported to the proper authorities. Good luck."
+                case 2:
+                    el = "How do I use the service?"
+                case 3:
+                    el = "I had a few questions abut the pay ! Contact me at my other email at  supposedChi1ck3n@proton.me, thank yuo!"
+                case 4:
+                    el = "As a {job}, how would I go about quitting and transferring to you? thanks!".format(job=''.join(genJob()))
+                case 5:
+                    el = "."
         payload["entry."+entryIds[x]] = el
     return payload
