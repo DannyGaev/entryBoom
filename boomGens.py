@@ -1,6 +1,6 @@
 import random
 import string
-import names
+import names 
 import json
 
 
@@ -171,13 +171,13 @@ def genPayload(entryIds, categories, session, user_agent):
             el = genNumber()
         elif "gender" in c:
             el = "Female" if rand else "Male"
-        elif "do you" in c or "are you" in c:
+        elif "do you" in c or "are you" in c or  "i know how to" in c or "how to" in c:
             el = "Yes" if rand else "No"
         elif "age" in c:
             el = "21"
         elif "occupation" in c or "job" in c or "position" in c:
             el = ''.join(genJob())
-        elif "e-mail" in c or "email" in c:
+        elif "e-mail" in c or "email" in c or "mail" in c:
             found = False
             while not found:
                 response = session.get(
