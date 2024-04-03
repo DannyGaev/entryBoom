@@ -33,7 +33,7 @@ python3 entryBoom.py -u URL -n NUMBER_OF_REQUESTS -v
 ```
 to activate verbose mode and see every request being sent
 
-<u>**You must have quotes around the URL**</u>
+<ins>**You must have quotes around the URL**</ins>
 
 #
 
