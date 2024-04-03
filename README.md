@@ -25,13 +25,15 @@ Install the required packages
 ```sh
 cd entryBoom
 pip3 install -r requirements.txt
-python3 entryBoom.py -u URL -n NUMBER_OF_REQUESTS 
+python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS 
 ```
 or
 ```sh
 python3 entryBoom.py -u URL -n NUMBER_OF_REQUESTS -v
 ```
 to activate verbose mode and see every request being sent
+
+** You must have quotes around the URL **
 
 #
 
