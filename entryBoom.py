@@ -125,7 +125,8 @@ if __name__ == '__main__':
                         action='store_true', help='Enable verbose mode')
     args = parser.parse_args()
     start = time.time()
-    URL = args.url
+    URL = str(args.url)
+    URL = URL.replace("[.]", ".")
     payloads = args.num
 
     if "formResponse" not in URL:
@@ -133,7 +134,6 @@ if __name__ == '__main__':
         r = requests.get(URL)
         URL = r.url
         URL = URL[0:URL.find("viewform")]+"formResponse"
-        URL = URL.replace("[.]",".")
 
     
     entryIds, categories = scrapeForm(URL)
