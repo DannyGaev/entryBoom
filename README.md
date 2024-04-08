@@ -17,6 +17,8 @@ entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding sc
 * Inundate scammers' Google Forms with enough data that they are unwilling to trudge through it to look for genuine responses
 
 #
+**NOTICE:**
+* entry.B00M is <ins>**ONLY**</ins> to be used against scammer's Google Forms; the program is not intended to be leveraged against normal, non-malicious Google Forms.
 
 ## Installation
 
@@ -29,7 +31,7 @@ python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS
 ```
 or
 ```sh
-python3 entryBoom.py -u URL -n NUMBER_OF_REQUESTS -v
+python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 ```
 to activate verbose mode and see every request being sent
 
