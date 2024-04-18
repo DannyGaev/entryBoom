@@ -68,6 +68,8 @@ def booming(URL, entryIds, categories, args, _):
         user_agent = get_user_agent()
         session = get_tor_session()
         r = session.get("http://httpbin.org/ip")
+        while(not r):
+            r = session.get("http://httpbin.org/ip")
         data = json.loads(r.text)
         payload = genPayload(entryIds, categories, session, user_agent)
         response = session.post(URL, data=payload, headers={
