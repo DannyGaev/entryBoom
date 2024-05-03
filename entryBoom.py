@@ -8,6 +8,15 @@ from formScrape import *
 from boomGens import *
 from missile import *
 
+#             _                ____   ___   ___  __  __
+#            | |              |  _ \ / _ \ / _ \|  \/  |
+#   ___ _ __ | |_ _ __ _   _  | |_) | | | | | | | \  / |
+#  / _ \ '_ \| __| '__| | | | |  _ <| | | | | | | |\/| |
+# |  __/ | | | |_| |  | |_| |_| |_) | |_| | |_| | |  | |
+#  \___|_| |_|\__|_|   \__, (_)____/ \___/ \___/|_|  |_|
+#                       __/ |
+#                      |___/
+
 if __name__ == '__main__':
     ascii_banner = pyfiglet.figlet_format("entry.B00M", font="big")
     colored_ascii_art = termcolor.colored(ascii_banner, color='blue')
