@@ -14,20 +14,8 @@ from tabulate import tabulate
 from formScrape import *
 from boomGens import *
 
-
-#             _                ____   ___   ___  __  __
-#            | |              |  _ \ / _ \ / _ \|  \/  |
-#   ___ _ __ | |_ _ __ _   _  | |_) | | | | | | | \  / |
-#  / _ \ '_ \| __| '__| | | | |  _ <| | | | | | | |\/| |
-# |  __/ | | | |_| |  | |_| |_| |_) | |_| | |_| | |  | |
-#  \___|_| |_|\__|_|   \__, (_)____/ \___/ \___/|_|  |_|
-#                       __/ |
-#                      |___/
-
-
 successful = 0
 denied = 0
-
 
 def get_user_agent():
     software_names = [SoftwareName.CHROME.value]
