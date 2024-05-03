@@ -5,55 +5,53 @@ from selenium.webdriver.chrome.options import Options
 import re
 import json
 from boomGens import *
-from entryBoom import get_tor_session, get_user_agent
+from missile import *
 
 
-def getSoup(link):
-    options = Options()
-    options.add_argument('--headless=new')
-    driver = webdriver.Chrome(options=options)
-    driver.get(link)
-    time.sleep(12)
-    content = driver.page_source.encode('utf-8').strip()
-    soup = BeautifulSoup(content, "html.parser")
-    return soup
-
-
-def findFields(soup):
-    pattern = r'<div[^>]*>(.*?)</div>'
-    pattern2 = r'\[\[.*?]]'
-    pattern3 = r'"(.*?)"'
-
+def findFields(URL):
     entryIds = []
     categories = []
+    answers = []
+    options = Options()
+    tor_proxy = "127.0.0.1:9150"
+    options.add_argument('--proxy-server=socks5://' + str(tor_proxy))
+    options.add_argument('--headless=new')
+    driver = webdriver.Chrome(options=options)
+    URL2 = "https://api.ipify.org/?format=json"
+    driver.get(URL2)
+    going = True
+    while going:
+        ip = driver.find_element("xpath", '//pre')
+        if ip is not None:
+            going = False
+    print(f"Proxy IP: {json.loads(ip.text)["ip"]}")
+    driver.get(URL)
+    time.sleep(1)
 
-    hidden_tags = soup.find_all("div", {"class": "Qr7Oae"})
-    for tag in hidden_tags:
-        tagBlock = str(tag)
-        tagBlockContent = re.findall(pattern, tagBlock, re.DOTALL)
+    entries = driver.find_elements("xpath", '//div[@jsmodel="CP1oW"]')
+    for entry in entries:
+        newAnswer = [[], []]
+        attrs = entry.get_attribute('data-params')
+        attrs = attrs[attrs.index("[["):attrs.index("]]")].split(",")
+        params = entry.get_attribute('data-params').split(",")
+        numAnswers = int(params[3])
+        entryIds.append(params[4][2:])
+        categories.append(params[1])
+        newAnswer[0] = numAnswers
+        if numAnswers > 0:
+            for attr in attrs:
+                attribute = attr.replace("[", "")
+                if "[" in attr and attr != "[" and attribute not in entryIds:
+                    newAnswer[1].append(attribute)
+        answers.append(newAnswer)
 
-        entry = re.findall(pattern2, tagBlockContent[0], re.DOTALL)
-        indexOfEntry = tagBlockContent[0].find(entry[0])
-        splicedEntry = entry[0].split(",")[0].replace('[[', '')
+    return entryIds, categories, answers
 
-        entryNum = splicedEntry
-        categoryBlock = tagBlockContent[0][0:indexOfEntry]
-        try:
-            category = re.findall(pattern3, categoryBlock, re.DOTALL)[0]
-        except:
-            category = ""
 
-        entryIds.append(entryNum)
-        categories.append(category)
-
-    return entryIds, categories
-
-def scrapeForm(URL):
-    print(f'\nWebscraping the Google Form at: "{URL}"')
-    entryIds, categories = findFields(getSoup(URL))
+def createExample(entryIds, categories, answers):
     key_replacements = {}
     examplePayload = genPayload(
-        entryIds, categories,  get_tor_session(), get_user_agent())
+        entryIds, categories, answers, get_tor_session(), get_user_agent())
     values = []
     cnt = 0
     for key, value in examplePayload.items():
@@ -69,4 +67,3 @@ def scrapeForm(URL):
     print("\n\033[36mExample of a payload being sent to the form\033[39m: ")
     pretty_json = json.dumps(key_replacements, indent=4)
     print(f"\033[33m{pretty_json}\033[39m")
-    return entryIds, categories
