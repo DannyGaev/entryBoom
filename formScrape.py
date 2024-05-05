@@ -34,7 +34,17 @@ def findFields(URL):
         attrs = entry.get_attribute('data-params')
         attrs = attrs[attrs.index("[["):attrs.index("]]")].split(",")
         params = entry.get_attribute('data-params').split(",")
-        numAnswers = int(params[3])
+        # print(params)
+        # print(int(params[3]))
+        # print(' yahoo'.isdigit())
+        searching = True
+        c = 1
+        while(searching):
+            if params[c].isdigit():
+                numAnswers = int(params[c])
+                searching = False
+            c+=1;
+
         entryIds.append(params[4][2:])
         categories.append(params[1])
         newAnswer[0] = numAnswers
