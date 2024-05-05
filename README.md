@@ -28,9 +28,21 @@ Install the required packages
 git clone https://github.com/DannyGaev/entryBoom.git
 cd entryBoom
 pip3 install -r requirements.txt
+```
+
+## Prerequisites to Execution
+- You must have Tor browser installed in order to anonymize your entryBoom process
+  - Open a new tab of Tor prior to running the program -- this will allow the code to 
+  properly anonymize your POST requests
+#
+
+## Running entryB00M
+# Non-Verbose Mode
+```sh
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS 
 ```
-or
+
+# Verbose Mode
 ```sh
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 ```
@@ -38,11 +50,7 @@ to activate verbose mode and see every request being sent
 
 <ins>**You must have quotes around the URL**</ins>
 
-## Anonymization
-- You must have Tor browser installed in order to anonymize your entryBoom process
-  - Open a new tab of Tor prior to running the program -- this will allow the code to 
-  properly anonymize your POST requests
-#
+
 
 ## Features
 - Use a '-v' when running the program to turn on verbose mode
