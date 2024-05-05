@@ -100,7 +100,7 @@ entry.B00M uses a number of packages to work properly:
 - [bs4] - Screen-scraping library
 - [names] - Generate random names
 
-entry.B00M itself is open source with a [public repository](https://github.com/DannyGaev/entryBoom) on GitHub.
+entry.B00M is open source with a [public repository](https://github.com/DannyGaev/entryBoom) on GitHub.
 
 
 
