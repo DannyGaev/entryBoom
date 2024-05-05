@@ -49,12 +49,12 @@ python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 # Modular Mode
 _In a python file_
 - URL = String value
-- NUMBER OF PAYLOADS = Integer value
-- VERBOSE = True/False boolean
+- NUMBER_OF_REQUESTS = Integer value
+- IS_VERBOSE = True/False boolean
 ```sh
 from entryBoom import launch
 
-launch(URL, NUMBER OF PAYLOADS, VERBOSE)
+launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 ```
 
 <ins>**You must have quotes around the URL**</ins>
