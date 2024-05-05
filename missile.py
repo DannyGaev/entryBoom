@@ -94,14 +94,16 @@ def booming(URL, entryIds, categories, answers, args, _):
             case 504:
                 status_code = "\033[31mGateway Timeout\033[39m"
                 denied += 1
-
-        if args.verbose:
-            print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
-                number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
+        if args!=None:
+            if args.verbose:
+                print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
+                    number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
 
     except ConnectionError as e:
-        if args.verbose:
-            status_code = "\033[31mRemote End Closed Connection Without Response\033[39m"
-            print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
-                number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
+        if args!=None:
+            if args.verbose:
+                status_code = "\033[31mRemote End Closed Connection Without Response\033[39m"
+                print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
+                    number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
         denied += 1
+
