@@ -18,7 +18,7 @@ entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding sc
 
 #
 **NOTICE:**
-* entry.B00M is <ins>**ONLY**</ins> to be used against scammer's Google Forms; the program is not intended to be leveraged against normal, non-malicious Google Forms.
+* entry.B00M is <ins>**ONLY**</ins> for use against scammer's Google Forms; the program is not intended to be leveraged against normal, non-malicious Google Forms.
 
 ## Installation
 
