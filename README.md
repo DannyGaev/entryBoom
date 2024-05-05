@@ -47,7 +47,7 @@ python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 ```
 # Modular Mode
-* In a python file *
+_In a python file_
 ```sh
 from entryBoom import launch
 launch(URL (WITH QUOTES), NUMBER OF PAYLOADS (INTEGER), VERBOSE (TRUE/FALSE))
