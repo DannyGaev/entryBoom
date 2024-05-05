@@ -37,6 +37,10 @@ to activate verbose mode and see every request being sent
 
 <ins>**You must have quotes around the URL**</ins>
 
+## Anonymization
+- You must have Tor browser installed in order to anonymize your entryBoom process
+  - Open a new tab of Tor prior to running the program -- this will allow the code to 
+  properly anonymize your POST requests
 #
 
 ## Features
