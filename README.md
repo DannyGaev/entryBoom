@@ -73,7 +73,8 @@ launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 
 #
 #
-## The Latest 2024 Phishing Statistics: ## &emsp; [AAG_IT] 
+## The Latest 2024 Phishing Statistics:
+&emsp; [AAG_IT] 
 
 ### Other statistics (2022)
 > Phishing is the most common form of cyber crime, 
