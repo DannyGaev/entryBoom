@@ -75,8 +75,6 @@ launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 #
 <ins> The Latest 2024 Phishing Statistics [AAG IT] <ins> 
 
-(https://aag-it.com/the-latest-phishing-statistics/) 
-
 ### Other statistics (2022)
 > Phishing is the most common form of cyber crime, 
 > with an estimated 3.4 billion spam emails sent every day...
@@ -121,3 +119,4 @@ MIT
    [selenium]: <https://pypi.org/project/selenium/>
    [bs4]: <https://pypi.org/project/beautifulsoup4/>
    [names]: <https://pypi.org/project/names/>
+   [AAG_IT]: <https://aag-it.com/the-latest-phishing-statistics/>
