@@ -38,7 +38,6 @@ pip3 install -r requirements.txt
 
 ## Running entryB00M
 <ins>**You must have quotes around the URL**</ins>
-
 # Non-Verbose Mode
 ```sh
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS 
