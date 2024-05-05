@@ -48,8 +48,8 @@ python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 ```
 # Modular Mode
 _In a python file_
-- URL = String, surrounded by quotes 
-- NUMBER OF PAYLOADS = Integer 
+- URL = String value
+- NUMBER OF PAYLOADS = Integer value
 - VERBOSE = True/False boolean
 ```sh
 from entryBoom import launch
