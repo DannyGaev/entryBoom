@@ -73,8 +73,8 @@ launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 
 #
 #
-## The Latest 2024 Phishing Statistics:
-&emsp; [AAG_IT] 
+## Phishing Statistics:
+&emsp; [The Latest 2024 Phishing Statistics] 
 
 ### Other statistics (2022)
 > Phishing is the most common form of cyber crime, 
@@ -120,4 +120,4 @@ MIT
    [selenium]: <https://pypi.org/project/selenium/>
    [bs4]: <https://pypi.org/project/beautifulsoup4/>
    [names]: <https://pypi.org/project/names/>
-   [AAG_IT]: <https://aag-it.com/the-latest-phishing-statistics/>
+   [The Latest 2024 Phishing Statistics]: <https://aag-it.com/the-latest-phishing-statistics/>
