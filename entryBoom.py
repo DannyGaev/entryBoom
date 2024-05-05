@@ -4,7 +4,7 @@ import time
 import threading
 import requests
 import argparse
-from formScrape import *
+from formScrape import * 
 from boomGens import *
 from missile import *
 
@@ -16,6 +16,38 @@ from missile import *
 #  \___|_| |_|\__|_|   \__, (_)____/ \___/ \___/|_|  |_|
 #                       __/ |
 #                      |___/
+
+
+def launch(URL, payloads, verbose, nickname=None):
+    if nickname is None:
+        nickname = URL
+    start = time.time()
+    URL = URL.replace("[.]", ".")
+    if "formResponse" not in URL:
+        print("Reformatting the URL...")
+        r = requests.get(URL)
+        URL = r.url
+        URL = URL[0:URL.find("viewform")]+"formResponse"
+
+    entryIds, categories, answers = findFields(URL)
+    createExample(entryIds, categories, answers)
+    print(f"\nSending {payloads} payloads of randomly generated data to {nickname}...")
+    threads = []
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args()
+    args.verbose = True
+    if not verbose:
+        args.verbose = False
+    for _ in range(payloads):
+        posting = threading.Thread(
+            target=booming, args=(URL, entryIds, categories, answers, args, _))
+        threads.append(posting)
+        posting.start()
+        time.sleep(0.1)
+    for thread in threads:
+        thread.join()
+    end = time.time()
+    getTable(start, end)
 
 if __name__ == '__main__':
     ascii_banner = pyfiglet.figlet_format("entry.B00M", font="big")
