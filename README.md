@@ -74,6 +74,7 @@ launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 #
 #
 The Latest 2024 Phishing Statistics [AAG IT](https://aag-it.com/the-latest-phishing-statistics/)
+### Other statistics (2022)
 > Phishing is the most common form of cyber crime, 
 > with an estimated 3.4 billion spam emails sent every day...
 > the top 5 most imitated brands in Q1 2022 were:
