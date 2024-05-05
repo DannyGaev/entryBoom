@@ -25,6 +25,7 @@ entry.B00M is designed to provide an anonymous, easy-to-use tool for impeding sc
 Install the required packages
 
 ```sh
+git clone https://github.com/DannyGaev/entryBoom.git
 cd entryBoom
 pip3 install -r requirements.txt
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS 
