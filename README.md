@@ -54,7 +54,7 @@ _In a python file_
 ```sh
 from entryBoom import launch
 
-launch("URL", NUMBER OF PAYLOADS, VERBOSE)
+launch(URL, NUMBER OF PAYLOADS, VERBOSE)
 ```
 
 <ins>**You must have quotes around the URL**</ins>
