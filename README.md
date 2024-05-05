@@ -46,7 +46,12 @@ python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS
 ```sh
 python3 entryBoom.py -u "URL" -n NUMBER_OF_REQUESTS -v
 ```
-to activate verbose mode and see every request being sent
+# Modular Mode
+* In a python file *
+```sh
+from entryBoom import launch
+launch(URL (WITH QUOTES), NUMBER OF PAYLOADS (INTEGER), VERBOSE (TRUE/FALSE))
+```
 
 <ins>**You must have quotes around the URL**</ins>
 
