@@ -14,8 +14,20 @@ from tabulate import tabulate
 from formScrape import *
 from boomGens import *
 
+
+#             _                ____   ___   ___  __  __
+#            | |              |  _ \ / _ \ / _ \|  \/  |
+#   ___ _ __ | |_ _ __ _   _  | |_) | | | | | | | \  / |
+#  / _ \ '_ \| __| '__| | | | |  _ <| | | | | | | |\/| |
+# |  __/ | | | |_| |  | |_| |_| |_) | |_| | |_| | |  | |
+#  \___|_| |_|\__|_|   \__, (_)____/ \___/ \___/|_|  |_|
+#                       __/ |
+#                      |___/
+
+
 successful = 0
 denied = 0
+
 
 def get_user_agent():
     software_names = [SoftwareName.CHROME.value]
@@ -68,42 +80,40 @@ def booming(URL, entryIds, categories, answers, args, _):
 
         match response.status_code:
             case 200:
-                status_code = "\033[32m200\033[39m"
+                status_code = "\033[32m200 (Successful)\033[39m"
                 successful += 1
             case 400:
-                status_code = "\033[31mBad Request\033[39m"
+                status_code = "\033[31m400 (Bad Request)\033[39m"
                 denied += 1
             case 401:
-                status_code = "\033[31mUnauthorized\033[39m"
+                status_code = "\033[31401 (Unauthorized)\033[39m"
                 denied += 1
             case 403:
-                status_code = "\033[31mForbidden\033[39m"
+                status_code = "\033[31m403 (Forbidden)\033[39m"
                 denied += 1
             case 404:
-                status_code = "\033[31mNot Found\033[39m"
+                status_code = "\033[31m404 (Not Found)\033[39m"
                 denied += 1
             case 429:
-                status_code = "\033[31mToo Many Requests\033[39m"
+                status_code = "\033[31m429 (Too Many Requests)\033[39m"
                 denied += 1
             case 500:
-                status_code = "\033[31mInternal Server Error\033[39m"
+                status_code = "\033[31m500 (Internal Server Error)\033[39m"
                 denied += 1
             case 503:
-                status_code = "\033[31mService Unavailable\033[39m"
+                status_code = "\033[31m503 (Service Unavailable)\033[39m"
                 denied += 1
             case 504:
-                status_code = "\033[31mGateway Timeout\033[39m"
+                status_code = "\033[31m504 (Gateway Timeout)\033[39m"
                 denied += 1
-        if args!=None:
-            if args.verbose:
-                print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
-                    number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
+
+        if args.verbose:
+            print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
+                number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
 
     except ConnectionError as e:
-        if args!=None:
-            if args.verbose:
-                status_code = "\033[31mRemote End Closed Connection Without Response\033[39m"
-                print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
-                    number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
+        if args.verbose:
+            status_code = "\033[31mRemote End Closed Connection Without Response\033[39m"
+            print("\033[1m✉️ Payload {number}\033[0m: \n\t\n\t\033[2m|User Agent: {userAgent}\n\t|IP Address of proxy: {ipAddr}\n\t|POST request response: {stat_code}\033[0m".format(
+                number=_, userAgent=user_agent, ipAddr=data['origin'], stat_code=status_code), end="\n")
         denied += 1
-
