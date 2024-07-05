@@ -157,11 +157,16 @@ def genNames(count):
 
 def genPayload(entryIds, categories, answers, session, user_agent):
     payload = {}
-    for x in range(0, len(categories)):
+    x = 0
+    for category in categories:
         rand = random.randint(1, 2) == 1
-        c = categories[x].lower()
+        c = category.lower()
         el = ""
-        if (answers[x][0] > 0):
+        if "date of birth" in c or "d.o.b" in c or "date" in c:
+            payload["entry."+entryIds[x][0]] = answers[x][1][0]
+            payload["entry."+entryIds[x][1]] = answers[x][1][1]
+            payload["entry."+entryIds[x][2]] = answers[x][1][2]
+        elif (answers[x][0] > 0):
             rand2 = random.randint(0, len(answers[x][1])-1)
             willBe = answers[x][1][rand2]
             try:
@@ -169,6 +174,7 @@ def genPayload(entryIds, categories, answers, session, user_agent):
             except:
                 continue
             el = willBe
+            payload["entry."+entryIds[x]] = el
         else:
             if "name" in c:
                 el = genNames(1)[0]
@@ -178,6 +184,8 @@ def genPayload(entryIds, categories, answers, session, user_agent):
                 el = genInput(5)
             elif "phone" in c:
                 el = genNumber()
+            elif "id" in c:
+                el = genInput(5)
             elif "gender" in c:
                 el = "Female" if rand else "male"
             elif "do you" in c or "are you" in c or "i know how to" in c or "how to" in c:
@@ -186,8 +194,18 @@ def genPayload(entryIds, categories, answers, session, user_agent):
                 el = "21"
             elif "occupation" in c or "job" in c or "position" in c:
                 el = ''.join(genJob())
-            elif "pass" in c or "password" in c:
+            elif "pass" in c or "password" in c or "key word" in c or "keyword" in c:
                 el = genInput(15)
+            elif "email address" in c:
+                found = False
+                while not found:
+                    response = session.get(
+                        "https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1", headers={'User-Agent': user_agent})
+                    try:
+                        el = json.loads(response.text)[0]
+                        found = True
+                    except:
+                        pass
             elif "School Attended" in c or "school attended" in c:
                 el = genNames(1)[0]
             elif "year" in c:
@@ -225,5 +243,6 @@ def genPayload(entryIds, categories, answers, session, user_agent):
                             job=''.join(genJob()))
                     case 5:
                         el = "."
-        payload["entry."+entryIds[x]] = el
+            payload["entry."+entryIds[x]] = el
+        x += 1
     return payload
