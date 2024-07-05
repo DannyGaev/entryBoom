@@ -34,27 +34,26 @@ def findFields(URL):
         attrs = entry.get_attribute('data-params')
         attrs = attrs[attrs.index("[["):attrs.index("]]")].split(",")
         params = entry.get_attribute('data-params').split(",")
-        # print(params)
-        # print(int(params[3]))
-        # print(' yahoo'.isdigit())
-        searching = True
-        c = 1
-        while(searching):
-            if params[c].isdigit():
-                numAnswers = int(params[c])
-                searching = False
-            c+=1;
-
+        numAnswers = int(params[3])
         entryIds.append(params[4][2:])
         categories.append(params[1])
         newAnswer[0] = numAnswers
-        if numAnswers > 0:
+        if "date of birth" in params[1].lower() or "date" in params[1].lower() or "d.o.b" in params[1].lower():
+            entryIds.remove(params[4][2:])
+            collection = []
+            collection.append(str(params[4][2:])+"_day")
+            collection.append(str(params[4][2:])+"_month")
+            collection.append(str(params[4][2:])+"_year")
+            newAnswer[1].append(f"0{random.randint(1, 9)}")
+            newAnswer[1].append(f"0{random.randint(1, 9)}")
+            newAnswer[1].append(f"200{random.randint(1, 9)}")
+            entryIds.append(collection)
+        elif numAnswers > 0:
             for attr in attrs:
                 attribute = attr.replace("[", "")
                 if "[" in attr and attr != "[" and attribute not in entryIds:
                     newAnswer[1].append(attribute)
         answers.append(newAnswer)
-
     return entryIds, categories, answers
 
 
@@ -62,15 +61,21 @@ def createExample(entryIds, categories, answers):
     key_replacements = {}
     examplePayload = genPayload(
         entryIds, categories, answers, get_tor_session(), get_user_agent())
+
     values = []
     cnt = 0
+
     for key, value in examplePayload.items():
         values.append(value)
-
     print("\nCategories found: ")
     for category in categories:
         c = category.replace("\\n", '')
-        key_replacements[c] = values[cnt]
+        if "date of birth" in c or "d.o.b" in c:
+            key_replacements[c] = values[cnt] + \
+                "/"+values[cnt+1]+"/"+values[cnt+2]
+            cnt += 2
+        else:
+            key_replacements[c] = values[cnt]
         print("\t∙ {cat}".format(cat=c))
         cnt += 1
 
