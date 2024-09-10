@@ -1,33 +1,16 @@
-import termcolor
-import pyfiglet
 from random_user_agent.params import SoftwareName, OperatingSystem
 from random_user_agent.user_agent import UserAgent
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import time 
-import threading
 import requests
 from requests.exceptions import ConnectionError
 import json
-import argparse
 from tabulate import tabulate
 from formScrape import *
 from boomGens import *
 
-
-#             _                ____   ___   ___  __  __
-#            | |              |  _ \ / _ \ / _ \|  \/  |
-#   ___ _ __ | |_ _ __ _   _  | |_) | | | | | | | \  / |
-#  / _ \ '_ \| __| '__| | | | |  _ <| | | | | | | |\/| |
-# |  __/ | | | |_| |  | |_| |_| |_) | |_| | |_| | |  | |
-#  \___|_| |_|\__|_|   \__, (_)____/ \___/ \___/|_|  |_|
-#                       __/ |
-#                      |___/
-
-
 successful = 0
 denied = 0
-
 
 def get_user_agent():
     software_names = [SoftwareName.CHROME.value]
