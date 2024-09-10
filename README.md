@@ -75,7 +75,7 @@ launch(payload)
         3. The status code which the request returned
 
 ## Mechanics
-- Google Forms utilize an "entry.id=########" to specify the answers that correlate to the corresponding questions; entry.B00M uses this concept to pass randomly generated values to the scammer's form.
+- Google Forms utilize an "entry.id=########" to specify the answers that correlate to the corresponding questions; entry.B00M uses this structure to pass randomly generated values to the scammer's form.
 
 ## Caveat
 - entry.B00M is unable to anonymously send data to a scam form if the form requires you to sign-in; this is because entry.B00M does not utilize a Google Account to send the data, and therefore cannot access the form itself.
