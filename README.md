@@ -27,6 +27,8 @@ Install the required packages
 ```sh
 git clone https://github.com/DannyGaev/entryBoom.git
 cd entryBoom
+python3 -m venv .venv
+. .venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
