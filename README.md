@@ -32,7 +32,7 @@ python3 -m venv .venv
 pip3 install -r requirements.txt
 ```
 
-## Prerequisites to Execution
+## Prerequisites to running
 - You must have Tor browser installed in order to anonymize your entryBoom process
   - Open a new tab of Tor prior to running the program -- this will allow the code to 
   properly anonymize your POST requests
