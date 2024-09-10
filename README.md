@@ -55,10 +55,14 @@ _In a python file_
 - IS_VERBOSE = True/False boolean
 ```sh
 from entryBoom import launch
+from entryBoom import Payload
 
-launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
+payload = Payload("URL",NUMBER_OF_REQUESTS,IS_VERBOSE)
+
+
+launch(payload)
+  
 ```
-
 
 
 ## Features
@@ -71,6 +75,8 @@ launch(URL, NUMBER OF PAYLOADS, IS_VERBOSE)
 ## Mechanics
 - Google Forms utilize an "entry.id=########" to specify the answers that correlate to the corresponding questions; entry.B00M uses this concept to pass randomly generated values to the scammer's form.
 
+## Caveat
+- entry.B00M is unable to anonymously send data to a scam form if the form requires you to sign-in; this is because entry.B00M does not utilize a Google Account to send the data, and therefore cannot access the form itself.
 #
 #
 ## Phishing Statistics:
